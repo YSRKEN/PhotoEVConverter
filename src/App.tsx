@@ -172,8 +172,10 @@ const SliderRow: React.FC<{
       {
         selectedFlg
           ? <td className="text-right align-middle bg-info font-weight-bold"
+            style={{width: '30%'}}
             onClick={onClickParameter}>{valueList[valueIndex]}</td>
           : <td className="text-right align-middle font-weight-bold"
+            style={{width: '30%'}}
             onClick={onClickParameter}>{valueList[valueIndex]}</td>
       }
       <td>
@@ -217,6 +219,7 @@ const App: React.FC = () => {
         setEvIndex2(evIndex2 - diff);
         break;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fValueIndex, speedIndex, isoIndex, evIndex]);
 
   useEffect(() => {
@@ -237,6 +240,7 @@ const App: React.FC = () => {
         setEvIndex2(diff + evIndex2);
         break;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fValueIndex2, speedIndex2, isoIndex2, evIndex2]);
 
   const onChangeSecondParameter = (parameterIndex: number, parameterValue: number) => {
@@ -331,7 +335,7 @@ const App: React.FC = () => {
                 <Button size="sm" onClick={() => setShowMode('Main')}>戻る</Button>
               </Form.Group>
             </Form>
-            <img src={helpImage} width="100%" />
+            <img src={helpImage} alt="help text" width="100%" />
           </Col>
         </Row>
         </Container>
