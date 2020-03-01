@@ -43,6 +43,26 @@ const App: React.FC = () => {
     const diff = sum1 - sum2;
     switch (selectedParameterIndex) {
       case 0:
+        setFValueIndex2(fValueIndex2 - diff);
+        break;
+      case 1:
+        setSpeedIndex2(speedIndex2 - diff);
+        break;
+      case 2:
+        setIsoIndex2(isoIndex2 - diff);
+        break;
+      case 3:
+        setEvIndex2(evIndex2 - diff);
+        break;
+    }
+  }, [fValueIndex, speedIndex, isoIndex, evIndex]);
+
+  useEffect(() => {
+    const sum1 = fValueIndex + speedIndex + isoIndex + evIndex;
+    const sum2 = fValueIndex2 + speedIndex2 + isoIndex2 + evIndex2;
+    const diff = sum1 - sum2;
+    switch (selectedParameterIndex) {
+      case 0:
         setFValueIndex2(diff + fValueIndex2);
         break;
       case 1:
