@@ -13,8 +13,10 @@ const SliderRow: React.FC<{
     <tr>
       {
         selectedFlg
-        ? <td className="text-right align-middle bg-info font-weight-bold">{valueList[valueIndex]}</td>
-        : <td className="text-right align-middle font-weight-bold">{valueList[valueIndex]}</td>
+        ? <td className="text-right align-middle bg-info font-weight-bold"
+            onClick={onClickParameter}>{valueList[valueIndex]}</td>
+        : <td className="text-right align-middle font-weight-bold"
+            onClick={onClickParameter}>{valueList[valueIndex]}</td>
       }
       <td>
         <Form.Control type="range" min={0} max={valueList.length - 1} step="1" value={'' + valueIndex}
@@ -70,16 +72,20 @@ const App: React.FC = () => {
               <tbody>
                   <SliderRow valueIndex={fValueIndex2} onChangeValueIndex={setFValueIndex2}
                     valueList={['F1', 'F1.4', 'F2', 'F2.8', 'F4', 'F5.6', 'F8', 'F11']}
-                    selectedFlg={selectedParameterIndex == 0}/>
+                    selectedFlg={selectedParameterIndex == 0}
+                    onClickParameter={() => setSelectedParameterIndex(0)}/>
                   <SliderRow valueIndex={speedIndex2} onChangeValueIndex={setSpeedIndex2}
                     valueList={['1[s]', '1/2[s]', '1/4[s]', '1/8[s]', '1/15[s]', '1/30[s]', '1/60[s]', '1/125[s]', '1/250[s]']}
-                    selectedFlg={selectedParameterIndex == 1}/>
+                    selectedFlg={selectedParameterIndex == 1}
+                    onClickParameter={() => setSelectedParameterIndex(1)}/>
                   <SliderRow valueIndex={isoIndex2} onChangeValueIndex={setIsoIndex2}
                     valueList={['ISO100', 'ISO200', 'ISO400', 'ISO800', 'ISO1600', 'ISO3200', 'ISO6400', 'ISO12800', 'ISO25600']}
-                    selectedFlg={selectedParameterIndex == 2}/>
+                    selectedFlg={selectedParameterIndex == 2}
+                    onClickParameter={() => setSelectedParameterIndex(2)}/>
                   <SliderRow valueIndex={evIndex2} onChangeValueIndex={setEvIndex2}
                     valueList={['EV-5.0', 'EV-4.0', 'EV-3.0', 'EV-2.0', 'EV-1.0', 'EV+0.0', 'EV+1.0', 'EV+2.0', 'EV+3.0', 'EV+4.0', 'EV+5.0']}
-                    selectedFlg={selectedParameterIndex == 3}/>
+                    selectedFlg={selectedParameterIndex == 3}
+                    onClickParameter={() => setSelectedParameterIndex(3)}/>
                 </tbody>
               </Table>
             </Form.Group>
