@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'App.css';
-import { Container, Row, Col, Form, Table } from 'react-bootstrap';
+import { Container, Row, Col, Form, Table, Button } from 'react-bootstrap';
+import helpImage from 'help.png';
 
 const F_VALUE_LIST: string[] = [
   "F1",
@@ -196,6 +197,8 @@ const App: React.FC = () => {
 
   const [selectedParameterIndex, setSelectedParameterIndex] = useState(2);
 
+  const [showMode, setShowMode] = useState('Main');
+
   useEffect(() => {
     const sum1 = fValueIndex + speedIndex + isoIndex + evIndex;
     const sum2 = fValueIndex2 + speedIndex2 + isoIndex2 + evIndex2;
@@ -256,63 +259,84 @@ const App: React.FC = () => {
     }
   }
 
-  return (
-    <Container>
-      <Row className="my-3">
-        <Col className="text-center">
-          <h1>EV変換機</h1>
-        </Col>
-      </Row>
-      <Row className="my-3">
-        <Col className="mx-auto">
-          <Form>
-            <Form.Label className="font-weight-bold">
-              元の値
-            </Form.Label>
-            <Form.Group>
-              <Table bordered size="sm">
-                <tbody>
-                  <SliderRow valueIndex={fValueIndex} onChangeValueIndex={setFValueIndex}
-                    valueList={F_VALUE_LIST} />
-                  <SliderRow valueIndex={speedIndex} onChangeValueIndex={setSpeedIndex}
-                    valueList={SPEED_VALUE_LIST} />
-                  <SliderRow valueIndex={isoIndex} onChangeValueIndex={setIsoIndex}
-                    valueList={ISO_VALUE_LIST} />
-                  <SliderRow valueIndex={evIndex} onChangeValueIndex={setEvIndex}
-                    valueList={EV_VALUE_LIST} />
-                </tbody>
-              </Table>
-            </Form.Group>
-            <Form.Label className="font-weight-bold">
-              変更後の値
-            </Form.Label>
-            <Form.Group>
-              <Table bordered size="sm">
-                <tbody>
-                  <SliderRow valueIndex={fValueIndex2} onChangeValueIndex={v => onChangeSecondParameter(0, v)}
-                    valueList={F_VALUE_LIST}
-                    selectedFlg={selectedParameterIndex === 0}
-                    onClickParameter={() => setSelectedParameterIndex(0)} />
-                  <SliderRow valueIndex={speedIndex2} onChangeValueIndex={v => onChangeSecondParameter(1, v)}
-                    valueList={SPEED_VALUE_LIST}
-                    selectedFlg={selectedParameterIndex === 1}
-                    onClickParameter={() => setSelectedParameterIndex(1)} />
-                  <SliderRow valueIndex={isoIndex2} onChangeValueIndex={v => onChangeSecondParameter(2, v)}
-                    valueList={ISO_VALUE_LIST}
-                    selectedFlg={selectedParameterIndex === 2}
-                    onClickParameter={() => setSelectedParameterIndex(2)} />
-                  <SliderRow valueIndex={evIndex2} onChangeValueIndex={v => onChangeSecondParameter(3, v)}
-                    valueList={EV_VALUE_LIST}
-                    selectedFlg={selectedParameterIndex === 3}
-                    onClickParameter={() => setSelectedParameterIndex(3)} />
-                </tbody>
-              </Table>
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
-  );
+  if (showMode === 'Main') {
+    return (
+      <Container>
+        <Row className="my-3">
+          <Col className="text-center">
+            <h1>EV換算機</h1>
+          </Col>
+        </Row>
+        <Row className="my-3">
+          <Col className="mx-auto">
+            <Form>
+              <Form.Group className="text-center">
+                <Button size="sm" onClick={() => setShowMode('Help')}>ヘルプ</Button>
+              </Form.Group>
+              <Form.Label className="font-weight-bold">
+                元の値
+              </Form.Label>
+              <Form.Group>
+                <Table bordered size="sm">
+                  <tbody>
+                    <SliderRow valueIndex={fValueIndex} onChangeValueIndex={setFValueIndex}
+                      valueList={F_VALUE_LIST} />
+                    <SliderRow valueIndex={speedIndex} onChangeValueIndex={setSpeedIndex}
+                      valueList={SPEED_VALUE_LIST} />
+                    <SliderRow valueIndex={isoIndex} onChangeValueIndex={setIsoIndex}
+                      valueList={ISO_VALUE_LIST} />
+                    <SliderRow valueIndex={evIndex} onChangeValueIndex={setEvIndex}
+                      valueList={EV_VALUE_LIST} />
+                  </tbody>
+                </Table>
+              </Form.Group>
+              <Form.Label className="font-weight-bold">
+                変更後の値
+              </Form.Label>
+              <Form.Group>
+                <Table bordered size="sm">
+                  <tbody>
+                    <SliderRow valueIndex={fValueIndex2} onChangeValueIndex={v => onChangeSecondParameter(0, v)}
+                      valueList={F_VALUE_LIST}
+                      selectedFlg={selectedParameterIndex === 0}
+                      onClickParameter={() => setSelectedParameterIndex(0)} />
+                    <SliderRow valueIndex={speedIndex2} onChangeValueIndex={v => onChangeSecondParameter(1, v)}
+                      valueList={SPEED_VALUE_LIST}
+                      selectedFlg={selectedParameterIndex === 1}
+                      onClickParameter={() => setSelectedParameterIndex(1)} />
+                    <SliderRow valueIndex={isoIndex2} onChangeValueIndex={v => onChangeSecondParameter(2, v)}
+                      valueList={ISO_VALUE_LIST}
+                      selectedFlg={selectedParameterIndex === 2}
+                      onClickParameter={() => setSelectedParameterIndex(2)} />
+                    <SliderRow valueIndex={evIndex2} onChangeValueIndex={v => onChangeSecondParameter(3, v)}
+                      valueList={EV_VALUE_LIST}
+                      selectedFlg={selectedParameterIndex === 3}
+                      onClickParameter={() => setSelectedParameterIndex(3)} />
+                  </tbody>
+                </Table>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <Row className="my-3">
+          <Col className="text-center">
+            <h1>ヘルプ</h1>
+            <Form>
+              <Form.Group className="text-center">
+                <Button size="sm" onClick={() => setShowMode('Main')}>戻る</Button>
+              </Form.Group>
+            </Form>
+            <img src={helpImage} width="100%" />
+          </Col>
+        </Row>
+        </Container>
+    );
+  }
 }
 
 export default App;
