@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "new-photo-ev-converter",
     "public": "build",
     "ignore": [
       "firebase.json",

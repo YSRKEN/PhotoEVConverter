@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "photo-ev-converter"
+    "default": "mft-db-tool"
+  },
+  "targets": {
+    "mft-db-tool": {
+      "hosting": {
+        "new-photo-ev-converter": [
+          "new-photo-ev-converter"
+        ]
+      }
+    }
   }
 }

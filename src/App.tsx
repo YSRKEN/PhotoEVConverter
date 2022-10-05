@@ -158,7 +158,7 @@ const EV_VALUE_LIST: string[] = [
   'EV+4 1/3',
   'EV+4 2/3',
   'EV+5.0'
-];
+].reverse();
 
 const SliderRow: React.FC<{
   valueIndex: number,
